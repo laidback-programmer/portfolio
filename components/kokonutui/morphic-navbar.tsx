@@ -20,7 +20,7 @@ const DEFAULT_NAV_ITEMS: Record<string, NavItem> = {
   "/skills": { name: "skills" },
   "/works": { name: "works" },
   "/blog": { name: "blog" },
-  "/about": { name: "about" },
+  "/contact": { name: "contact" },
 };
 
 export function MorphicNavbar({

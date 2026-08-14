@@ -11,36 +11,20 @@ export function Hero() {
 
   useEffect(() => {
     const tl = createTimeline({ defaults: { ease: "outQuad" } });
-    tl.add(".hero-eyebrow", {
-      opacity: [0, 1],
-      translateY: [8, 0],
-      duration: 400,
-    })
-      .add(
-        ".hero-headline",
-        { opacity: [0, 1], translateY: [16, 0], duration: 600 },
-        "-=150",
-      )
-      .add(
-        ".hero-sub",
-        { opacity: [0, 1], translateY: [16, 0], duration: 500 },
-        "-=300",
-      )
-      .add(
-        ".hero-tag",
-        {
-          opacity: [0, 1],
-          translateY: [10, 0],
-          duration: 350,
-          delay: stagger(60),
-        },
-        "-=250",
-      )
-      .add(
-        ".hero-cta",
-        { opacity: [0, 1], translateY: [10, 0], duration: 400 },
-        "-=200",
-      );
+    tl.add(
+      ".hero-tag",
+      {
+        opacity: [0, 1],
+        translateY: [10, 0],
+        duration: 350,
+        delay: stagger(60),
+      },
+      "-=250",
+    ).add(
+      ".hero-cta",
+      { opacity: [0, 1], translateY: [10, 0], duration: 400 },
+      "-=200",
+    );
   }, []);
 
   return (
@@ -48,6 +32,7 @@ export function Hero() {
       ref={scope}
       className="relative flex min-h-screen items-center justify-center px-6 py-24"
     >
+      <div className="relative w-full max-w-4xl p-12">
       <div className="relative w-full max-w-2xl p-12">
         <span className="absolute -left-px -top-px h-5 w-5 border-l-2 border-t-2 border-primary/70" />
         <span className="absolute -right-px -top-px h-5 w-5 border-r-2 border-t-2 border-primary/70" />

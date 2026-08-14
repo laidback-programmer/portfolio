@@ -42,10 +42,6 @@ export default function RootLayout({
         <MorphicNavbar />
         {children}
       </body>
-
-      <body className="bg-background font-sans text-foreground antialiased">
-        {children}
-      </body>
     </html>
   );
 }
