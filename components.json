@@ -21,7 +21,8 @@
   },
   "menuColor": "default",
   "menuAccent": "subtle",
-  "registries": {"@kokonutui": "https://kokonutui.com/r/{name}.json"}
+  "registries": {
+    "@kokonutui": "https://kokonutui.com/r/{name}.json",
+    "@react-bits": "https://reactbits.dev/r/{name}.json"
+  }
 }
-
-
