@@ -20,7 +20,7 @@ const DEFAULT_NAV_ITEMS: Record<string, NavItem> = {
   "/skills": { name: "skills" },
   "/works": { name: "works" },
   "/blog": { name: "blog" },
-  "/about": { name: "about" },
+  "/contact": { name: "contact" },
 };
 
 export function MorphicNavbar({
@@ -38,8 +38,8 @@ export function MorphicNavbar({
   };
 
   return (
-    <nav className={clsx("mx-auto max-w-4xl px-4 py-2", className)}>
-      <div className="flex items-center justify-center">
+    <nav className={clsx("mx-auto max-w-4xl px-4 py-6", className)}>
+      <div className="flex items-center justify-center pt-2">
         <div className="glass flex items-center justify-between overflow-hidden rounded-xl">
           {Object.entries(items).map(([path, { name }], index, array) => {
             const isActive = isActiveLink(path);
