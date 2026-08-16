@@ -33,10 +33,30 @@ export function Hero() {
       className="relative flex min-h-screen items-center justify-center px-6 py-24"
     >
       <div className="relative w-full max-w-4xl p-12">
+      <div className="relative w-full max-w-2xl p-12">
         <span className="absolute -left-px -top-px h-5 w-5 border-l-2 border-t-2 border-primary/70" />
         <span className="absolute -right-px -top-px h-5 w-5 border-r-2 border-t-2 border-primary/70" />
         <span className="absolute -left-px -bottom-px h-5 w-5 border-b-2 border-l-2 border-primary/70" />
         <span className="absolute -right-px -bottom-px h-5 w-5 border-b-2 border-r-2 border-primary/70" />
+
+        <p className="hero-eyebrow mb-6 font-mono text-sm text-muted-foreground opacity-0">
+          ~/arya/portfolio
+        </p>
+
+        <h1 className="hero-headline mb-5 font-display text-4xl font-semibold leading-tight tracking-tight opacity-0 sm:text-5xl">
+          Building systems that see&nbsp;—
+          <br />
+          and know what they <span className="text-primary">
+            don&apos;t
+          </span>{" "}
+          know.
+        </h1>
+
+        <p className="hero-sub mb-8 max-w-md text-[15.5px] leading-relaxed text-muted-foreground opacity-0">
+          AI/ML engineer specializing in computer vision and uncertainty-aware
+          deep learning. Currently building Swin-EVDNet, an evidential
+          segmentation architecture for brain MRI.
+        </p>
 
         <div className="mb-8 flex flex-wrap gap-2">
           {TAGS.map((tag) => (
