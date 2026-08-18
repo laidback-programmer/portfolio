@@ -4,7 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import initialsLogo from "../initials(1).svg";
+//import initialsLogo from "../initials(1).svg";
 
 interface NavItem {
   name: string;
@@ -75,38 +75,27 @@ export function MorphicNavbar({
   }, [items]);
 
   return (
-    <nav className={clsx("mx-auto max-w-4xl px-4 py-2", className)}>
-      <div className="flex items-center justify-center">
-        <div className="glass flex items-center justify-between overflow-hidden rounded-xl">
-          {Object.entries(items).map(([path, { name }], index, array) => {
-            const isActive = isActiveLink(path);
-            const isFirst = index === 0;
-            const isLast = index === array.length - 1;
-            const prevPath = index > 0 ? array[index - 1][0] : null;
-            const nextPath =
-              index < array.length - 1 ? array[index + 1][0] : null;
-
-            return (
-              <Link
-                className={clsx(
-                  "flex items-center justify-center bg-black p-1.5 px-4 text-sm text-white transition-all duration-300 dark:bg-white dark:text-black",
-                  isActive
-                    ? "mx-2 rounded-xl font-semibold text-sm"
-                    : clsx(
-                        (isActiveLink(prevPath || "") || isFirst) &&
-                          "rounded-l-xl",
-                        (isActiveLink(nextPath || "") || isLast) &&
-                          "rounded-r-xl"
-                      )
-                )}
-                href="#"
-                key={path}
-                onClick={() => setActivePath(path)}
-              >
-                {name}
-              </Link>
-            );
-          })}
+    <nav
+      className={clsx("fixed top-0 left-0 right-0 z-50 px-6 py-5", className)}
+    >
+      <div className="mx-auto flex max-w-[100rem] items-center">
+        {/* Left: Logo */}
+        <div className="flex w-24 items-center justify-start">
+          <Link
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick("#hero");
+            }}
+            className="-ml-6"
+          >
+            {/* <Image
+              src={initialsLogo}
+              alt="Initials"
+              priority
+              className="size-30"
+            /> */}
+          </Link>
         </div>
 
         {/* Center: Nav pill (stays centered) */}
