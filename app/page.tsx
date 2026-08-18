@@ -4,10 +4,10 @@ import { useState } from "react";
 import { About } from "@/components/about";
 import { GreetingLoader } from "@/components/greeting-loader";
 import { Hero } from "@/components/hero";
-import { Projects } from "@/components/projects";
-import { Activities } from "@/components/activities"
-import { Skills } from "@/components/skills";
-import { ContactForm } from "@/components/contact_form";
+// import { Projects } from "@/components/projects";
+// import { Activities } from "@/components/activities"
+// import { Skills } from "@/components/skills";
+// import { ContactForm } from "@/components/contact_form";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export default function Home() {
         <About />
       </section>
 
-      <section id="projects">
+      {/* <section id="projects">
         <Projects />
       </section>
 
@@ -38,7 +38,7 @@ export default function Home() {
 
       <section id="contact">
         <ContactForm />
-      </section>
+      </section> */}
     </main>
   );
 }
