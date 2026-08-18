@@ -5,7 +5,7 @@
 :root {
   --radius: 0.5rem;
 
-  --background: #0B0E14;
+  --background: #000000;
   --foreground: #E6E9F0;
 
   --card: #131826;
@@ -14,8 +14,8 @@
   --popover: #131826;
   --popover-foreground: #E6E9F0;
 
-  --primary: #5EEAD4;
-  --primary-foreground: #0B0E14;
+  --primary: #3f95df;
+  --primary-foreground: #2c3445;
 
   --secondary: #131826;
   --secondary-foreground: #E6E9F0;
@@ -69,10 +69,7 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px),
-    radial-gradient(circle at top, rgba(94, 234, 212, 0.12), transparent 35%);
-  background-size: 48px 48px, 48px 48px, 100% 100%;
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.25), transparent 40%);
   background-attachment: fixed;
   min-height: 100vh;
 }

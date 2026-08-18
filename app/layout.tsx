@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import MorphicNavbar from "@/components/kokonutui/morphic-navbar";
+import ScrollReset from "@/components/Background/scrollreset";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -36,9 +37,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${plexSans.variable} ${jetbrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${plexSans.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <body className="bg-background font-sans text-foreground antialiased">
+        <ScrollReset />
         <MorphicNavbar />
         {children}
       </body>
