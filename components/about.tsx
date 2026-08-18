@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { animate, createTimeline } from "animejs";
+import Image from "next/image";
+import meImage from "./me.png";
 
 const CYCLE_WORDS = ["developer", "builder", "learner"];
 
@@ -30,20 +32,20 @@ function RotatingWord() {
             duration: 280,
             ease: "outQuad",
             onComplete: () => {
-              timeoutId = setTimeout(cycle, 1800);
+              timeoutId = setTimeout(cycle, 1400);
             },
           });
         },
       });
     };
 
-    timeoutId = setTimeout(cycle, 1800);
+    timeoutId = setTimeout(cycle, 1400);
     return () => clearTimeout(timeoutId);
   }, []);
 
   return (
-    <span className="relative inline-block h-[1.4em] w-28 overflow-hidden align-bottom">
-      <span ref={wordRef} className="inline-block font-medium text-primary">
+    <span className="relative inline-block h-[1.3em] w-24 overflow align-baseline">
+      <span ref={wordRef} className="inline-block text-xl font-medium text-primary">
         {CYCLE_WORDS[0]}
       </span>
     </span>
@@ -51,56 +53,131 @@ function RotatingWord() {
 }
 
 export function About() {
-  const scope = useRef<HTMLDivElement>(null);
+  const scope = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const section = scope.current;
+    if (!section) return;
+
+    const eyebrowEl = section.querySelector(".about-eyebrow");
+    const photoEl = section.querySelector(".about-photo");
+    const badgeEl = section.querySelector(".about-badge");
+    const leadEl = section.querySelector(".about-lead");
+    const bodyEl = section.querySelector(".about-body");
+    const tagEl = section.querySelector(".about-tag");
+
+    if (
+      !eyebrowEl ||
+      !photoEl ||
+      !badgeEl ||
+      !leadEl ||
+      !bodyEl ||
+      !tagEl
+    )
+      return;
+
     const tl = createTimeline({ defaults: { ease: "outQuad" } });
-    tl.add(".about-eyebrow", {
-      opacity: [0, 1],
-      translateY: [8, 0],
-      duration: 400,
-    })
+    tl.add(eyebrowEl, { opacity: [0, 1], translateY: [8, 0], duration: 400 })
+    
       .add(
-        ".about-heading",
-        { opacity: [0, 1], translateY: [16, 0], duration: 600 },
-        "-=150",
+        photoEl,
+        { opacity: [0, 1], translateX: [16, 0], duration: 600 },
+        "-=350",
       )
       .add(
-        ".about-body",
-        { opacity: [0, 1], translateY: [16, 0], duration: 500 },
+        badgeEl,
+        { opacity: [0, 1], translateY: [12, 0], duration: 450 },
+        "-=450",
+      )
+      .add(
+        leadEl,
+        { opacity: [0, 1], translateY: [14, 0], duration: 500 },
         "-=300",
       )
       .add(
-        ".about-tag",
+        bodyEl,
+        { opacity: [0, 1], translateY: [14, 0], duration: 500 },
+        "-=300",
+      )
+      .add(
+        tagEl,
         { opacity: [0, 1], translateY: [10, 0], duration: 400 },
-        "-=200",
+        "-=250",
       );
   }, []);
 
   return (
-    <section id="me" ref={scope} className="mx-auto max-w-2xl px-6 py-24">
-      <p className="about-eyebrow mb-6 font-mono text-sm text-muted-foreground opacity-0">
-        ~/arya/me
+    <section
+      id="me"
+      ref={scope}
+      className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 py-24"
+    >
+      <p className="about-eyebrow mb-6 text-5xl font-semibold text-sm text-muted-foreground opacity-0 sm:text-3xl">
+        a little about me ~
       </p>
 
-      <h2 className="about-heading mb-6 font-display text-3xl font-semibold tracking-tight opacity-0 sm:text-4xl">
-        a little about me
-      </h2>
+      
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:items-center md:gap-24">
+        <div>
+          <span className="about-badge mb-6 inline-flex items-center rounded-full border-border bg-card px-4 py-2 font-display text-xs font-mono ">
+            Computer Vision
+          </span>
+          <span className="about-badge mb-6 inline-flex items-center rounded-full border-border bg-card px-4 py-2 font-display text-xs font-mono ">
+            Evidential Deep Learning
+          </span>
 
-      <p className="about-body mb-6 text-[15.5px] leading-relaxed text-muted-foreground opacity-0">
-        I&apos;m a second-year Computer Science student specializing in AI/ML at
-        MIET, Meerut. Alongside coursework, I lead design as Graphics Head at
-        GDG and help organize MLSA, including running national-level hackathons.
-        I like taking projects the full distance — from Contract Guard, an
-        AI-driven contract analysis platform, to TARANG, a crowdsourced
-        disaster-response app — and I care as much about how a tool feels to use
-        as how correctly it runs underneath.
-      </p>
+          <p className="about-lead mb-6 text-lg leading-relaxed opacity-0 sm:text-xl">
+            I&apos;m an AI Engineer currently pursuing my final-year Computer
+            Science degree at MIET, Meerut, focusing on building{" "}
+            <span className="text-primary font-semibold text-xl sm:text-2xl">
+              practical intelligent systems that solve real-world problems
+            </span>{" "}
+            — building models that don&apos;t just predict, but know when to be
+            unsure.
+          </p>
 
-      <p className="about-tag flex flex-wrap items-center gap-1.5 text-[15.5px] text-muted-foreground opacity-0">
-        I am a <RotatingWord />, and someone who doesn&apos;t like to think that
-        there are any stupid projects.
-      </p>
+          <p className="about-body mb-6 text-[15.5px] leading-loose text-muted-foreground opacity-0">
+            Alongside coursework, I lead design as Graphics Head at{" "}
+            <span className="text-red-400 border-white-300 rounded-full bg-card px-3 py-1">
+              Google
+            </span>{" "}
+            <span className="text-green-500 border-white-300 rounded-full bg-card px-3 py-1">
+              Developer
+            </span>{" "}
+            <span className="text-yellow-500 border-white-300 rounded-full bg-card px-3 py-1">
+              Groups
+            </span>{" "}
+            and{" "}
+            <span className="text-blue-500 border-white-300 rounded-full bg-card px-3 py-1">
+              MLSA
+            </span>
+            , including organizing and managing national-level hackathons. I
+            like taking projects the full distance — from{" "}
+            <span className="text-green-300 border-white-300 rounded-full bg-card px-3 py-1">
+              Contract Guard
+            </span>
+            , an AI-driven contract analysis platform, to{" "}
+            <span className="text-orange-400 border-white-300 rounded-full bg-card px-3 py-1">
+              TARANG
+            </span>
+            , a crowdsourced disaster-response cross-platform app
+          </p>
+
+          <p className="about-tag text-[15.5px] leading-loose text-muted-foreground">
+            I am a <RotatingWord />, and someone who believes every project has something to teach you.
+          </p>
+        </div>
+
+        <div className="about-photo relative aspect-square w-64 md:w-80 lg:w-[28rem] overflow-hidden rounded-full border-2 border-whiite-400 bg-card opacity-0">
+          <Image
+            src={meImage}
+            alt="Arya"
+            fill
+            sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 448px"
+            className="object-cover transition-transform duration-500 hover:scale-110"
+          />
+        </div>
+      </div>
     </section>
   );
 }
