@@ -6,7 +6,7 @@ import { GreetingLoader } from "@/components/greeting-loader";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { Activities } from "@/components/activities"
-// import { Skills } from "@/components/skills";
+import { Skills } from "@/components/skills";
 import { ContactForm } from "@/components/contact_form";
 
 export default function Home() {
@@ -28,11 +28,9 @@ export default function Home() {
         <Projects />
       </section>
 
-      {/*
         <section id="skills">
           <Skills />
         </section>
-      */}
 
       <section id="activities">
         <Activities />

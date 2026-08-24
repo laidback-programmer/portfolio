@@ -110,13 +110,12 @@ export function About() {
     <section
       id="me"
       ref={scope}
-      className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 py-24"
+      className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 py-24 pb-5"
     >
-      <p className="about-eyebrow mb-6 text-5xl font-semibold text-sm text-muted-foreground opacity-0 sm:text-3xl">
+      <p className="about-eyebrow mb-16 font-display text-3xl font-semibold tracking-tight opacity-0 sm:text-5xl">
         a little about me ~
       </p>
 
-      
       <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:items-center md:gap-24">
         <div>
           <span className="about-badge mb-6 inline-flex items-center rounded-full border-border bg-card px-4 py-2 font-display text-xs font-mono ">
@@ -164,7 +163,8 @@ export function About() {
           </p>
 
           <p className="about-tag text-[15.5px] leading-loose text-muted-foreground">
-            I am a <RotatingWord />, and someone who believes every project has something to teach you.
+            I am a <RotatingWord />, and someone who believes every project has
+            something to teach you.
           </p>
         </div>
 
