@@ -68,8 +68,5 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  background-image:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.25), transparent 40%);
-  background-attachment: fixed;
   min-height: 100vh;
 }
