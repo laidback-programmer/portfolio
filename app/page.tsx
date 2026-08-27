@@ -4,10 +4,10 @@ import { useState } from "react";
 import { About } from "@/components/about";
 import { GreetingLoader } from "@/components/greeting-loader";
 import { Hero } from "@/components/hero";
-import { Projects } from "@/components/projects";
 import { Activities } from "@/components/activities"
 import { Skills } from "@/components/skills";
 import { ContactForm } from "@/components/contact_form";
+import Projects from "@/components/projects";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ export default function Home() {
       </section>
 
       <section id="projects">
-        <Projects />
+        <Projects/>
       </section>
 
         <section id="skills">
