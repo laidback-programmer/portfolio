@@ -66,6 +66,7 @@ const PROJECTS: Project[] = [
 ];
 
 const SPRING_CONFIG = { stiffness: 300, damping: 30, mass: 0.5 };
+const PREVIEW_OFFSET = 16;
 
 export default function Projects() {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
@@ -79,10 +80,23 @@ export default function Projects() {
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      mouseX.set(e.clientX + 16);
-      mouseY.set(e.clientY + 16);
+      mouseX.set(e.clientX + PREVIEW_OFFSET);
+      mouseY.set(e.clientY + PREVIEW_OFFSET);
     },
     [mouseX, mouseY],
+  );
+
+  const handleProjectEnter = useCallback(
+    (project: Project, e: React.MouseEvent) => {
+      const x = e.clientX + PREVIEW_OFFSET;
+      const y = e.clientY + PREVIEW_OFFSET;
+      mouseX.set(x);
+      mouseY.set(y);
+      smoothX.jump(x);
+      smoothY.jump(y);
+      setHoveredProject(project);
+    },
+    [mouseX, mouseY, smoothX, smoothY],
   );
 
   return (
@@ -113,7 +127,7 @@ export default function Projects() {
                 key={project.title}
                 className="group border-t border-border transition-opacity duration-300 last:border-b"
                 style={{ opacity: isDimmed ? 0.35 : 1 }}
-                onMouseEnter={() => setHoveredProject(project)}
+                onMouseEnter={(e) => handleProjectEnter(project, e)}
                 onClick={() => {
                   window.open(project.github, "_blank", "noopener,noreferrer");
                 }}
