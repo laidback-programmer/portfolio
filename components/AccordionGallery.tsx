@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, useCallback, CSSProperties, KeyboardEvent, MouseEvent } from 'react';
 import { gsap } from 'gsap';
+import Image from "next/image";
 
 export interface AccordionGalleryItem {
   image: string;
@@ -225,18 +226,18 @@ const AccordionGallery = ({
             style={
               {
                 borderRadius: `${radius}px`,
-                '--ag-accent': accentColor,
-                willChange: 'flex-grow, transform'
+                "--ag-accent": accentColor,
+                willChange: "flex-grow, transform",
               } as CSSProperties
             }
             href={item.link || undefined}
-            onClick={e => handleClick(i, e)}
+            onClick={(e) => handleClick(i, e)}
             onMouseEnter={() => handleEnter(i)}
             onFocus={() => setActive(i)}
-            onKeyDown={e => handleKeyDown(i, e)}
+            onKeyDown={(e) => handleKeyDown(i, e)}
             role="listitem"
             tabIndex={0}
-            aria-current={isActive ? 'true' : undefined}
+            aria-current={isActive ? "true" : undefined}
             aria-label={item.label}
           >
             <span className="absolute inset-0 overflow-hidden [border-radius:inherit]">
@@ -246,16 +247,18 @@ const AccordionGallery = ({
                 }}
                 className="absolute top-1/2 left-1/2 [filter:grayscale(var(--ag-gray,1))]"
                 style={{
-                  width: vertical ? '100%' : 'var(--ag-media-size, 320px)',
-                  height: vertical ? 'var(--ag-media-size, 320px)' : '100%',
-                  willChange: 'transform, filter'
+                  width: vertical ? "100%" : "var(--ag-media-size, 320px)",
+                  height: vertical ? "var(--ag-media-size, 320px)" : "100%",
+                  willChange: "transform, filter",
                 }}
               >
-                <img
+                <Image
                   src={item.image}
-                  alt={item.alt || item.label || ''}
+                  alt={item.alt || item.label || ""}
                   draggable={false}
-                  className="block h-full w-full select-none object-cover [-webkit-user-drag:none]"
+                  fill
+                  sizes="100%"
+                  className="block select-none object-cover [-webkit-user-drag:none]"
                 />
               </span>
               <span
@@ -276,7 +279,7 @@ const AccordionGallery = ({
                   className="h-[26px] w-[3px] flex-none rounded-[3px] opacity-0"
                   style={{
                     background: accentColor,
-                    boxShadow: `0 0 12px color-mix(in srgb, ${accentColor} 60%, transparent)`
+                    boxShadow: `0 0 12px color-mix(in srgb, ${accentColor} 60%, transparent)`,
                   }}
                 />
                 <span
