@@ -3,6 +3,8 @@ import { Space_Grotesk, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import MorphicNavbar from "@/components/kokonutui/morphic-navbar";
 import ScrollReset from "@/components/Background/scrollreset";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -39,6 +41,8 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${plexSans.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
+      <SpeedInsights />
+      <Analytics />
       <body className="bg-background font-sans text-foreground antialiased">
         <ScrollReset />
         <MorphicNavbar />
