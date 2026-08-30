@@ -5,6 +5,7 @@ import MorphicNavbar from "@/components/kokonutui/morphic-navbar";
 import ScrollReset from "@/components/Background/scrollreset";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import SideRays from "@/components/Background/SideRays";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -44,6 +45,22 @@ export default function RootLayout({
       <SpeedInsights />
       <Analytics />
       <body className="bg-background font-sans text-foreground antialiased">
+        <div className="fixed inset-0 -z-10 pointer-events-none">
+          <SideRays
+            speed={2.6}
+            rayColor1="#EAB308"
+            rayColor2="#96c8ff"
+            intensity={2}
+            spread={2.2}
+            origin="both"
+            tilt={0}
+            saturation={1.5}
+            blend={0.78}
+            falloff={2.2}
+            opacity={0.7}
+          />
+        </div>
+
         <ScrollReset />
         <MorphicNavbar />
         {children}
