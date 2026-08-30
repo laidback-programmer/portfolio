@@ -76,7 +76,7 @@ export function Hero() {
   return (
     <section
       ref={scope}
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 py-6 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-6 text-center"
     >
       {/* Bottom glowing line */}
       <div
