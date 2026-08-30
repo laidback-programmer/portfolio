@@ -8,37 +8,35 @@ import { Activities } from "@/components/activities"
 import { Skills } from "@/components/skills";
 import { ContactForm } from "@/components/contact_form";
 import Projects from "@/components/projects";
-import Larry from "@/components/Larry";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <main className=" relative pt-24">
-      <Larry />
+    <main className=" relative">
       {loading && <GreetingLoader onComplete={() => setLoading(false)} />}
 
-      <section id="hero" className="relative z-20">
+      <section id="hero">
         <Hero />
       </section>
 
-      <section id="about" className="relative z-20">
+      <section id="about">
         <About />
       </section>
 
-      <section id="projects" className="relative z-20">
+      <section id="projects">
         <Projects />
       </section>
 
-      <section id="skills" className="relative z-20">
+      <section id="skills">
         <Skills />
       </section>
 
-      <section id="activities" className="relative z-20">
+      <section id="activities">
         <Activities />
       </section>
 
-      <section id="contact" className="relative z-20">
+      <section id="contact">
         <ContactForm />
       </section>
     </main>

@@ -75,41 +75,46 @@ export function Hero() {
 
   return (
     <section
-  ref={scope}
-  className="relative flex min-h-screen flex-col items-center justify-center px-6 py-10 text-center"
->
-  <h1 className="hero-greeting font-display text-11xl font-semibold tracking-tight opacity-0 sm:text-7xl">
-    Hi, I&apos;m Arya Kant Rajvanshi
-  </h1>
+      ref={scope}
+      className="relative flex min-h-screen flex-col items-center justify-center px-6 py-6 text-center"
+    >
+      {/* Bottom glowing line */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[80%] -translate-x-1/2 bg-white shadow-[0_0_12px_2px_rgba(255,255,255,0.8)]"
+        aria-hidden="true"
+      />
+      <h1 className="hero-greeting font-display text-11xl font-semibold tracking-tight opacity-0 sm:text-7xl">
+        Hi, I&apos;m Arya Kant Rajvanshi
+      </h1>
 
-  <p className="hero-role mt-6 font-display text-5xl font-medium text-primary opacity-0 sm:text-4xl">
-    AI Engineer
-  </p>
+      <p className="hero-role mt-6 font-display text-5xl font-medium text-primary opacity-0 sm:text-4xl">
+        AI Engineer
+      </p>
 
-  {/* Socials row */}
-  <div className="mt-6 flex items-center gap-4">
-    {SOCIALS.map(({ icon: Icon, href, label, external, hoverClass }) => (
+      {/* Socials row */}
+      <div className="mt-6 flex items-center gap-4">
+        {SOCIALS.map(({ icon: Icon, href, label, external, hoverClass }) => (
+          <a
+            key={label}
+            href={href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noreferrer" : undefined}
+            aria-label={label}
+            className={`hero-social flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground opacity-0 transition-colors ${hoverClass}`}
+          >
+            <Icon className="h-4 w-4" />
+          </a>
+        ))}
+      </div>
+
+      {/* Scroll button — now sits below the socials */}
       <a
-        key={label}
-        href={href}
-        target={external ? "_blank" : undefined}
-        rel={external ? "noreferrer" : undefined}
-        aria-label={label}
-        className={`hero-social flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground opacity-0 transition-colors ${hoverClass}`}
+        href="#me"
+        aria-label="Scroll to about section"
+        className="hero-scroll mt-16 flex h-11 w-11 animate-bounce items-center justify-center rounded-full bg-primary text-primary-foreground opacity-0 transition-transform hover:scale-105"
       >
-        <Icon className="h-4 w-4" />
+        <ChevronsDown className="h-5 w-5" />
       </a>
-    ))}
-  </div>
-
-  {/* Scroll button — now sits below the socials */}
-  <a
-    href="#me"
-    aria-label="Scroll to about section"
-    className="hero-scroll mt-16 flex h-11 w-11 animate-bounce items-center justify-center rounded-full bg-primary text-primary-foreground opacity-0 transition-transform hover:scale-105"
-  >
-    <ChevronsDown className="h-5 w-5" />
-  </a>
-</section>
+    </section>
   );
 }

@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
     category: "Custom ViT Model for brain classification and segmentation",
     description:
       "A deep learning pipeline for brain tumor segmentation and classification using modern transformer-based architectures.",
-    image: "/projects/brain-tumor.jpg",
+    image: "/tether.png",
     tech: ["Python", "PyTorch", "Swin Transformer"],
     github: "https://github.com/laidback-programmer/tether",
   },
@@ -154,7 +154,7 @@ export default function Projects() {
                       alt={`${project.title} preview`}
                       fill
                       sizes="100vw"
-                      className="object-contain"
+                      className="object-cover"
                       priority={index === 0}
                       unoptimized
                     />
