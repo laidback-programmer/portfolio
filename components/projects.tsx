@@ -42,7 +42,7 @@ const PROJECTS: Project[] = [
     category: "Personal Website",
     description:
       "A personal portfolio focused on interactive motion, visual storytelling, and experimental interfaces.",
-    image: "/portfolio.png",
+    image: "/portfolio2.png",
     tech: ["Next.js", "TypeScript", "Framer Motion", "Shadcnui"],
     github: "https://github.com/laidback-programmer/portfolio",
   },
