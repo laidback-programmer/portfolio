@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 //import initialsLogo from "../initials(1).svg";
 
