@@ -13,7 +13,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <main className=" relative">
+    <main className=" relative z-10">
       {loading && <GreetingLoader onComplete={() => setLoading(false)} />}
 
       <section id="hero">
