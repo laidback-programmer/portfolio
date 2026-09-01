@@ -1,9 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createTimeline, stagger } from "animejs";
-import { Mail, ChevronsDown } from "lucide-react";
+import { Mail, ChevronsDown, Loader2 } from "lucide-react";
 
+
+function ResumeIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="12" y1="19" x2="12" y2="11" />
+      <line x1="9" y1="16" x2="15" y2="16" />
+    </svg>
+  );
+}
 
 function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -43,10 +54,27 @@ const SOCIALS = [
     external: false,
     hoverClass: "hover:border-red-500 hover:text-red-300",
   },
+  {
+    icon: ResumeIcon,
+    href: "/resume.pdf",
+    label: "Resume",
+    external: true,
+    hoverClass: "hover:border-green-500 hover:text-green-300",
+  },
 ];
 
 export function Hero() {
   const scope = useRef<HTMLDivElement>(null);
+  const [loadingLabel, setLoadingLabel] = useState<string | null>(null);
+  const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
+
+  const handleSocialClick = (e: React.MouseEvent<HTMLAnchorElement>, label: string) => {
+    if (label === "Resume") {
+      setLoadingLabel(label);
+      // Simulate loading state for 500ms
+      setTimeout(() => setLoadingLabel(null), 500);
+    }
+  };
 
   useEffect(() => {
     const tl = createTimeline({ defaults: { ease: "outQuad" } });
@@ -92,18 +120,31 @@ export function Hero() {
       </p>
 
       {/* Socials row */}
-      <div className="mt-6 flex items-center gap-4">
+      <div className="mt-6 flex items-center gap-4 pb-4">
         {SOCIALS.map(({ icon: Icon, href, label, external, hoverClass }) => (
-          <a
-            key={label}
-            href={href}
-            target={external ? "_blank" : undefined}
-            rel={external ? "noreferrer" : undefined}
-            aria-label={label}
-            className={`hero-social flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground opacity-0 transition-colors ${hoverClass}`}
-          >
-            <Icon className="h-4 w-4" />
-          </a>
+          <div key={label} className="relative">
+            <a
+              href={href}
+              target={external ? "_blank" : undefined}
+              rel={external ? "noreferrer" : undefined}
+              aria-label={label}
+              onClick={(e) => handleSocialClick(e, label)}
+              onMouseEnter={() => setHoveredLabel(label)}
+              onMouseLeave={() => setHoveredLabel(null)}
+              className={`hero-social flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground opacity-0 transition-colors ${hoverClass}`}
+            >
+              {loadingLabel === label ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Icon className="h-4 w-4" />
+              )}
+            </a>
+            {hoveredLabel === label && (
+              <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 transform rounded-md bg-black/70 px-2 py-1 text-xs font-medium text-gray-200 whitespace-nowrap">
+                {label}
+              </div>
+            )}
+          </div>
         ))}
       </div>
 
