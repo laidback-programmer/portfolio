@@ -56,7 +56,7 @@ const SOCIALS = [
   },
   {
     icon: ResumeIcon,
-    href: "/resume.pdf",
+    href: "/My_CV.pdf",
     label: "Resume",
     external: true,
     hoverClass: "hover:border-green-500 hover:text-green-300",
