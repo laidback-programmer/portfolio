@@ -6,6 +6,7 @@ import ScrollReset from "@/components/Background/scrollreset";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import SideRays from "@/components/Background/SideRays";
+import { NoiseTexture } from "@/components/ui/noise-texture";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -45,7 +46,7 @@ export default function RootLayout({
       <SpeedInsights />
       <Analytics />
       <body className="bg-background font-sans text-foreground antialiased">
-        <div className="fixed inset-0 -z-10 pointer-events-none">
+        <div className="fixed inset-0 z-10 pointer-events-none">
           <SideRays
             speed={2.6}
             rayColor1="#EAB308"
@@ -58,6 +59,14 @@ export default function RootLayout({
             blend={0.78}
             falloff={2.2}
             opacity={0.7}
+          />
+        </div>
+        <div className="pointer-events-none fixed inset-0 -z-10">
+          <NoiseTexture
+            frequency={0.6}
+            octaves={8}
+            slope={0.15}
+            noiseOpacity={0.3}
           />
         </div>
 
