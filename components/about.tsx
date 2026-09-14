@@ -122,16 +122,26 @@ export function About() {
 
       <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px] md:items-center md:gap-24">
         <div>
-          <span className="about-badge mb-6 inline-flex items-center rounded-full border-border bg-card px-4 py-2 font-display text-xs font-mono ">
-            Computer Vision
-          </span>
-          <span className="about-badge mb-6 inline-flex items-center rounded-full border-border bg-card px-4 py-2 font-display text-xs font-mono ">
-            Evidential Deep Learning
-          </span>
+          {/* Expertise badges */}
+          <div className="relative mb-6 flex flex-wrap items-center gap-3">
+            {/* Soft light behind the badges */}
+            <div
+              className="pointer-events-none absolute left-4 right-4 top-1/2 -z-10 h-10 -translate-y-1/2 rounded-full bg-white/15 blur-2xl"
+              aria-hidden="true"
+            />
+
+            <span className="about-badge inline-flex items-center rounded-full border border-border bg-card px-4 py-2 font-mono text-xs shadow-[0_4px_20px_rgba(255,255,255,0.08)]">
+              Computer Vision
+            </span>
+
+            <span className="about-badge inline-flex items-center rounded-full border border-border bg-card px-4 py-2 font-mono text-xs shadow-[0_4px_20px_rgba(255,255,255,0.08)]">
+              Evidential Deep Learning
+            </span>
+          </div>
 
           <p className="about-lead mb-6 text-lg leading-relaxed opacity-0 sm:text-xl">
             I&apos;m an AI Engineer currently pursuing my final-year Computer
-            Science degree at MIET, Meerut, focusing on building{" "}
+            Science degree at MIET, Meerut, UP, India, focusing on building{" "}
             <span className="text-primary font-semibold text-xl sm:text-2xl">
               practical intelligent systems that solve real-world problems
             </span>{" "}
@@ -154,16 +164,7 @@ export function About() {
             <span className="text-blue-500 border-white-300 rounded-full bg-card px-3 py-1">
               MLSA
             </span>
-            , including organizing and managing national-level hackathons. I
-            like taking projects the full distance — from{" "}
-            <span className="text-green-300 border-white-300 rounded-full bg-card px-3 py-1">
-              Contract Guard
-            </span>
-            , an AI-driven contract analysis platform, to{" "}
-            <span className="text-orange-400 border-white-300 rounded-full bg-card px-3 py-1">
-              TARANG
-            </span>
-            , a crowdsourced disaster-response cross-platform app
+            , including organizing and managing national-level hackathons.
           </p>
 
           <p className="about-tag text-[15.5px] leading-loose text-muted-foreground">
