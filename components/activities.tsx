@@ -16,40 +16,36 @@ const ACTIVITIES: Activity[] = [
   {
     label: "Samaarambh 2.0 2025",
     description:
-      "Leading visual design for Google Developer Group event branding, campaigns, and community materials.",
+      "Organizing a technical talk event with 100+ attendees, including a workshops on Cloud and networking opportunities.",
     image: "/activities_assets/samarambh/samarambh.png",
     photos: [
-      "/activities_assets/maadhyam2k26/view.jpg",
-      "/gallery/samaarambh-2.jpg",
-      "/gallery/samaarambh-3.jpg",
+      "/activities_assets/samarambh/samarambh3.jpeg",
+      "/activities_assets/samarambh/audience.jpeg",
+      "/activities_assets/samarambh/1735489959183.jpeg",
+      "/activities_assets/samarambh/team.jpeg",
+      "/activities_assets/samarambh/me.jpeg",
+      "/activities_assets/samarambh/prize.jpeg",
     ],
   },
   {
     label: "Devgathering 2025",
     description:
-      "Organizing Microsoft Learn Student Ambassador initiatives and technical sessions on campus.",
+      "Oraginizing a national-level hackathon with 200+ attendees,  ",
     image: "/activities_assets/devgathering/devgatheringg.png",
     photos: [
-      "/gallery/devgathering-1.jpg",
-      "/gallery/devgathering-2.jpg",
-      "/gallery/devgathering-3.jpg",
-    ],
-  },
-  {
-    label: "GDG Orientation 2025",
-    description:
-      "Leading visual design for Google Developer Group event branding, campaigns, and community materials.",
-    image: "/gallery/gdg.jpg",
-    photos: [
-      "/gallery/orientation-1.jpg",
-      "/gallery/orientation-2.jpg",
-      "/gallery/orientation-3.jpg",
+      "/activities_assets/devgathering/banner.jpeg",
+      "/activities_assets/devgathering/audience.jpeg",
+      "/activities_assets/devgathering/random.jpeg",
+      "/activities_assets/devgathering/team.jpeg",
+      "/activities_assets/devgathering/team2.jpeg",
+      "/activities_assets/devgathering/us.jpeg"
+      
     ],
   },
   {
     label: "Maadhyam 2026",
     description:
-      "Leading visual design for Google Developer Group event branding, campaigns, and community materials.",
+      "Organizing a technical talk event with 100+ attendees, including a panel discussion and networking opportunities.",
     image: "/activities_assets/maadhyam2k26/schedule.png",
     photos: [
       "/activities_assets/maadhyam2k26/view.JPG",
@@ -63,11 +59,15 @@ const ACTIVITIES: Activity[] = [
     label: "Hack Heist 2025+26",
     description:
       "Running and mentoring at national-level hackathons, from problem statements to judging.",
-    image: "/gallery/hackathons.jpg",
+    image: "/activities_assets/hackheist/hackathons.jpg",
     photos: [
-      "/gallery/hackheist-1.jpg",
-      "/gallery/hackheist-2.jpg",
-      "/gallery/hackheist-3.jpg",
+      "/activities_assets/hackheist/banner.jpeg",
+      "/activities_assets/hackheist/snaps.png",
+      "/activities_assets/hackheist/snap2.jpg",
+      "/activities_assets/hackheist/hh26_banner.jpeg",
+      "/activities_assets/hackheist/hh26_snap1.jpeg",
+      "/activities_assets/hackheist/trophies_hh26.png",
+      
     ],
   },
 ];
