@@ -129,7 +129,11 @@ export default function Projects() {
       <div
         className="relative"
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => {
+        onMouseEnter={(e) => {
+          cursorX.set(e.clientX);
+          cursorY.set(e.clientY);
+          smoothCursorX.jump(e.clientX);
+          smoothCursorY.jump(e.clientY);
           setIsInContainer(true);
           setShowProjectCursor(true);
         }}
@@ -155,6 +159,8 @@ export default function Projects() {
                 }}
                 onMouseLeave={() => {
                   setShowProjectCursor(false);
+
+                  <div className="mt-16 flex justify-center sm:mt-20"></div>;
                   setHoveredProject(null);
                 }}
               >
@@ -182,11 +188,10 @@ export default function Projects() {
                       sizes="100vw"
                       className="object-cover"
                       priority={index === 0}
-                      unoptimized
                     />
                   </div>
 
-                  <p className="mb-4 w-full max-w-nonetext-sm leading-relaxed text-muted-foreground">
+                  <p className="mb-4 w-full max-w-none text-sm leading-relaxed text-muted-foreground">
                     {project.description}
                   </p>
 
