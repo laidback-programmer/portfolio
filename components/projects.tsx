@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 interface Project {
   title: string;
@@ -20,38 +21,29 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    title: "Tarang",
-    category: "Cross-platform Flutter Application",
-    description:
-      "A disaster management platform designed to improve real-time hazard awareness and response.",
-    image: "/tarang.png",
-    tech: ["Flutter", "FastAPI", "Firebase"],
-    github: "https://github.com/laidback-programmer/Tarang",
-  },
-  {
     title: "Tether",
     category: "Custom ViT Model for brain classification and segmentation",
     description:
       "A deep learning pipeline for brain tumor segmentation and classification using modern transformer-based architectures.",
     image: "/tether.png",
-    tech: ["Python", "PyTorch", "Swin Transformer"],
+    tech: ["Python", "PyTorch", "Swin Transformer", "Hugging Face", "Albumentations", "OpenCV", "NumPy", "Pandas", "Matplotlib", "Scikit-learn",],
     github: "https://github.com/laidback-programmer/tether",
   },
   {
-    title: "Portfolio",
-    category: "Personal Website",
+    title: "Tarang",
+    category: "Cross-platform Flutter Application",
     description:
-      "A personal portfolio focused on interactive motion, visual storytelling, and experimental interfaces.",
-    image: "/portfolio2.png",
-    tech: ["Next.js", "TypeScript", "Framer Motion", "Shadcnui"],
-    github: "https://github.com/laidback-programmer/portfolio",
+      "A disaster management platform designed to improve real-time hazard awareness and response.",
+    image: "/tarang.png",
+    tech: ["Flutter", "FastAPI", "Firebase","Typescript", "MongoDB"],
+    github: "https://github.com/laidback-programmer/Tarang",
   },
   {
     title: "ContractGuard",
     category: "Document Analyzer",
     description:
       "AI-powered contract analyzer that detects risks, simplifies legal clauses, and provides smart legal recommendations.",
-    image: "/projects/contractguard.jpg",
+    image: "/contractguard.png",
     tech: [
       "React.js",
       "TailwindCSS",
@@ -63,6 +55,15 @@ const PROJECTS: Project[] = [
     ],
     github: "https://github.com/laidback-programmer/ContractGuard",
   },
+  {
+    title: "Portfolio",
+    category: "Personal Website",
+    description:
+      "A personal portfolio focused on interactive motion, visual storytelling, and experimental interfaces.",
+    image: "/portfolio2.png",
+    tech: ["Next.js", "TypeScript", "Framer Motion", "Shadcnui"],
+    github: "https://github.com/laidback-programmer/portfolio",
+  },
 ];
 
 const SPRING_CONFIG = { stiffness: 300, damping: 30, mass: 0.5 };
@@ -71,19 +72,36 @@ const PREVIEW_OFFSET = 16;
 export default function Projects() {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [isInContainer, setIsInContainer] = useState(false);
+  const [showProjectCursor, setShowProjectCursor] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
   const smoothX = useSpring(mouseX, SPRING_CONFIG);
   const smoothY = useSpring(mouseY, SPRING_CONFIG);
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
 
+
+  const smoothCursorX = useSpring(cursorX, {
+    stiffness: 700,
+    damping: 35,
+    mass: 0.2,
+  });
+  const smoothCursorY = useSpring(cursorY, {
+    stiffness: 700,
+    damping: 35,
+    mass: 0.2,
+  });
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       mouseX.set(e.clientX + PREVIEW_OFFSET);
       mouseY.set(e.clientY + PREVIEW_OFFSET);
+
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
     },
-    [mouseX, mouseY],
+    [mouseX, mouseY, cursorX, cursorY],
   );
 
   const handleProjectEnter = useCallback(
@@ -111,10 +129,14 @@ export default function Projects() {
       <div
         className="relative"
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsInContainer(true)}
+        onMouseEnter={() => {
+          setIsInContainer(true);
+          setShowProjectCursor(true);
+        }}
         onMouseLeave={() => {
           setIsInContainer(false);
           setHoveredProject(null);
+          setShowProjectCursor(false);
         }}
       >
         <div className="flex flex-col">
@@ -125,11 +147,15 @@ export default function Projects() {
             return (
               <article
                 key={project.title}
-                className="group border-t border-border transition-opacity duration-300 last:border-b"
+                className="group cursor-none border-t border-border transition-opacity duration-300 last:border-b [&_*]:cursor-none"
                 style={{ opacity: isDimmed ? 0.35 : 1 }}
-                onMouseEnter={(e) => handleProjectEnter(project, e)}
-                onClick={() => {
-                  window.open(project.github, "_blank", "noopener,noreferrer");
+                onMouseEnter={(e) => {
+                  handleProjectEnter(project, e);
+                  setShowProjectCursor(true);
+                }}
+                onMouseLeave={() => {
+                  setShowProjectCursor(false);
+                  setHoveredProject(null);
                 }}
               >
                 {/* Mobile / Tablet */}
@@ -177,7 +203,7 @@ export default function Projects() {
                 </div>
 
                 {/* Desktop */}
-                <div className="relative hidden cursor-pointer py-8 md:block md:py-10">
+                <div className="relative hidden py-8 md:block md:py-10">
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div className="flex-1">
                       <div className="mb-3 flex items-center gap-4">
@@ -188,6 +214,7 @@ export default function Projects() {
                           <h3 className="font-display text-2xl font-medium transition-transform duration-300 group-hover:translate-x-2 lg:text-3xl">
                             {project.title}
                           </h3>
+
                           <p className="mt-1 text-sm text-muted-foreground">
                             {project.category}
                           </p>
@@ -198,7 +225,7 @@ export default function Projects() {
                       </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-2 lg:max-w-xs lg:justify-end">
+                    <div className="flex flex-wrap gap-2 lg:max-w-lg lg:justify-end">
                       {project.tech.map((t) => (
                         <span
                           key={t}
@@ -218,15 +245,36 @@ export default function Projects() {
                     }}
                     transition={{ duration: 0.2 }}
                     className="absolute bottom-8 right-0 text-lg"
-                  >
-                    ↗
-                  </motion.div>
+                  ></motion.div>
                 </div>
               </article>
             );
           })}
         </div>
       </div>
+      <AnimatePresence>
+        {showProjectCursor && (
+          <motion.div
+            className="pointer-events-none fixed left-0 top-0 z-[100] hidden lg:block"
+            style={{
+              x: smoothCursorX,
+              y: smoothCursorY,
+            }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.7 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+          >
+            <div className="-translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/90 shadow-[0_0_20px_rgba(59,130,246,0.45)]">
+              <ArrowUpRight
+                size={21}
+                strokeWidth={2.8}
+                className="text-white"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {hoveredProject && isInContainer && (
