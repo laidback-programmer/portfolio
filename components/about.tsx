@@ -110,7 +110,7 @@ export function About() {
     <section
       id="me"
       ref={scope}
-      className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 py-24 pb-5"
+      className="mx-auto flex max-w-7xl flex-col justify-center px-6 py-20 pb-5"
     >
       <div
         className="pointer-events-none absolute top-0 left-1/2 h-px -translate-x-1/2 bg-white shadow-[0_0_20px_4px_rgba(255,255,255,0.9)]"

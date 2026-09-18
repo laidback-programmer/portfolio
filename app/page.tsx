@@ -8,6 +8,7 @@ import { Activities } from "@/components/activities";
 import { Skills } from "@/components/skills";
 import { ContactForm } from "@/components/contact_form";
 import Projects from "@/components/projects";
+import GlassSection from "@/components/ui/glass-effect";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -16,30 +17,35 @@ export default function Home() {
     <>
       {loading && <GreetingLoader onComplete={() => setLoading(false)} />}
 
-      <main className="relative z-10">
+      <main className="relative z-10 flex flex-col gap-5 px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8 lg:pb-10">
         <section id="hero">
           <Hero />
         </section>
 
-        <section id="about">
+        {/* About */}
+        <GlassSection id="about">
           <About />
-        </section>
+        </GlassSection>
 
+        {/* Projects */}
         <section id="projects">
           <Projects />
         </section>
 
-        <section id="skills">
+        {/* Skills */}
+        <GlassSection id="skills">
           <Skills />
-        </section>
+        </GlassSection>
 
-        <section id="activities">
+        {/* Activities */}
+        <GlassSection id="activities">
           <Activities />
-        </section>
+        </GlassSection>
 
-        <section id="contact">
+        {/* Contact */}
+        <GlassSection id="contact" className="py-6 sm:py-8 lg:py-10">
           <ContactForm />
-        </section>
+        </GlassSection>
       </main>
     </>
   );

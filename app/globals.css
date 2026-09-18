@@ -2,55 +2,121 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* =========================================================
+   NIGHT THEME — default / fallback
+   ========================================================= */
+
 :root {
   --radius: 0.5rem;
 
   --background: #000000;
-  --foreground: #E6E9F0;
+  --foreground: #e6e9f0;
 
   --card: #131826;
-  --card-foreground: #E6E9F0;
+  --card-foreground: #e6e9f0;
 
   --popover: #131826;
-  --popover-foreground: #E6E9F0;
+  --popover-foreground: #e6e9f0;
 
   --primary: #3f95df;
   --primary-foreground: #2c3445;
 
   --secondary: #131826;
-  --secondary-foreground: #E6E9F0;
+  --secondary-foreground: #e6e9f0;
 
   --muted: #131826;
-  --muted-foreground: #7B849C;
+  --muted-foreground: #7b849c;
 
-  --accent: #F0A868;
-  --accent-foreground: #0B0E14;
+  --accent: #f0a868;
+  --accent-foreground: #0b0e14;
 
-  --destructive: #E5484D;
-  --destructive-foreground: #E6E9F0;
+  --destructive: #e5484d;
+  --destructive-foreground: #e6e9f0;
 
-  --border: #232A3D;
-  --input: #232A3D;
-  --ring: #5EEAD4;
+  --border: #232a3d;
+  --input: #232a3d;
+
+  --ring: #5eead4;
+
+  /* Glass */
+  --glass-background: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.20);
+    --glass-shadow: rgba(250, 249, 246, 0.9);
+    --glass-highlight: rgba(255, 255, 255, 0.10);
 }
+
+
+/* =========================================================
+   DAY THEME
+   ========================================================= */
+
+html[data-theme="day"] {
+  --background: #f8fafc;
+  --foreground: #111827;
+
+  --card: #ffffff;
+  --card-foreground: #111827;
+
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+
+  --primary: #3f95df;
+  --primary-foreground: #ffffff;
+
+  --secondary: #eef2f7;
+  --secondary-foreground: #111827;
+
+  --muted: #eef2f7;
+  --muted-foreground: #667085;
+
+  --accent: #f0a868;
+  --accent-foreground: #111827;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: #dfe4eb;
+  --input: #dfe4eb;
+
+  --ring: #3f95df;
+
+  /* Glass */
+  --glass-background: rgba(255, 255, 255, 0.48);
+    --glass-border: rgba(255, 255, 255, 0.65);
+    --glass-shadow: rgba(15, 23, 42, 0.12);
+    --glass-highlight: rgba(255, 255, 255, 0.90);
+}
+
+
+/* =========================================================
+   TAILWIND THEME MAPPING
+   ========================================================= */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -65,8 +131,33 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 1.2s ease,
+    color 0.8s ease;
+}
+
+html[data-theme="day"] {
+  color-scheme: light;
+}
+
+html[data-theme="night"] {
+  color-scheme: dark;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   min-height: 100vh;
+
+  transition:
+    background-color 1.2s ease,
+    color 0.8s ease;
 }
