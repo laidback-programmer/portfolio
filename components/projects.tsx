@@ -185,7 +185,7 @@ export default function Projects() {
                       src={project.image}
                       alt={`${project.title} preview`}
                       fill
-                      sizes="100vw"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                       priority={index === 0}
                     />
