@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createTimeline, stagger } from "animejs";
 import { Mail, ChevronsDown, Loader2 } from "lucide-react";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 
 function ResumeIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -37,6 +38,7 @@ const SOCIALS = [
     icon: GithubIcon,
     href: "https://github.com/laidback-programmer",
     label: "GitHub",
+    color: "#ffffff",
     external: true,
     hoverClass: "hover:border-white hover:text-white",
   },
@@ -45,13 +47,16 @@ const SOCIALS = [
     href: "https://www.linkedin.com/in/arya-kant-rajvanshi-141bbb28a",
     label: "LinkedIn",
     external: true,
+    color: "#6fb7ff",
     hoverClass: "hover:border-blue-500 hover:text-blue-300",
   },
   {
     icon: Mail,
     href: "mailto:atwork.arya@gmail.com",
     label: "Email",
+    color: "#EA4335",
     external: false,
+
     hoverClass: "hover:border-red-500 hover:text-red-300",
   },
   {
@@ -59,6 +64,7 @@ const SOCIALS = [
     href: "/My_CV.pdf",
     label: "Resume",
     external: true,
+    color: "#22C55E",
     hoverClass: "hover:border-green-500 hover:text-green-300",
   },
 ];
@@ -67,14 +73,6 @@ export function Hero() {
   const scope = useRef<HTMLDivElement>(null);
   const [loadingLabel, setLoadingLabel] = useState<string | null>(null);
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
-
-  const handleSocialClick = (e: React.MouseEvent<HTMLAnchorElement>, label: string) => {
-    if (label === "Resume") {
-      setLoadingLabel(label);
-      // Simulate loading state for 500ms
-      setTimeout(() => setLoadingLabel(null), 500);
-    }
-  };
 
   useEffect(() => {
     const tl = createTimeline({ defaults: { ease: "outQuad" } });
@@ -106,11 +104,7 @@ export function Hero() {
       ref={scope}
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-6 text-center"
     >
-      {/* Bottom glowing line */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[80%] -translate-x-1/2 bg-white shadow-[0_0_12px_2px_rgba(255,255,255,0.8)]"
-        aria-hidden="true"
-      />
+      
       <h1 className="hero-greeting font-display text-11xl font-semibold tracking-tight opacity-0 sm:text-7xl">
         Hi, I&apos;m Arya Kant Rajvanshi
       </h1>
@@ -120,27 +114,43 @@ export function Hero() {
       </p>
 
       {/* Socials row */}
-      <div className="mt-6 flex items-center gap-4 pb-4">
-        {SOCIALS.map(({ icon: Icon, href, label, external, hoverClass }) => (
-          <div key={label} className="relative">
-            <a
-              href={href}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noreferrer" : undefined}
-              aria-label={label}
-              onClick={(e) => handleSocialClick(e, label)}
-              onMouseEnter={() => setHoveredLabel(label)}
-              onMouseLeave={() => setHoveredLabel(null)}
-              className={`hero-social flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground opacity-0 transition-colors ${hoverClass}`}
-            >
-              {loadingLabel === label ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Icon className="h-4 w-4" />
-              )}
-            </a>
+      <div className="mt-8 flex items-center gap-5 pb-6">
+        {SOCIALS.map(({ icon: Icon, href, label, external, color }) => (
+          <div
+            key={label}
+            className="hero-social relative opacity-0"
+            onMouseEnter={() => setHoveredLabel(label)}
+            onMouseLeave={() => setHoveredLabel(null)}
+          >
+            <LiquidMetalButton
+              viewMode="icon"
+              label={label}
+              icon={
+                loadingLabel === label ? (
+                  <Loader2 className="h-4 w-4" style={{ color }} />
+                ) : (
+                  <Icon className="h-4 w-4" style={{ color }} />
+                )
+              }
+              onClick={() => {
+                if (label === "Resume") {
+                  setLoadingLabel(label);
+
+                  setTimeout(() => {
+                    setLoadingLabel(null);
+                  }, 500);
+                }
+
+                if (external) {
+                  window.open(href, "_blank", "noopener,noreferrer");
+                } else {
+                  window.location.href = href;
+                }
+              }}
+            />
+
             {hoveredLabel === label && (
-              <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 transform rounded-md bg-black/70 px-2 py-1 text-xs font-medium text-gray-200 whitespace-nowrap">
+              <div className="absolute top-full left-1/2 z-50 mt-2 -translate-x-1/2 rounded-md bg-black/70 px-2 py-1 text-xs font-medium whitespace-nowrap text-gray-200">
                 {label}
               </div>
             )}
